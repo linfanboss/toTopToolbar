@@ -1,0 +1,65 @@
+
+$toolbar-size: 52px;
+@mixin background-position($normal,$hover){
+	background-position: 0 $normal;
+	&:hover{
+		background-position: 0 $hover;
+	}
+}
+@mixin opacity($opacity){
+		opacity:$opacity;
+		filter:alpha(opacity=$opacity * 100);
+}
+.toolbar {
+	position:fixed;
+	right:20px;
+	bottom:10px;
+}
+.toolbar-item,.toolbar-layer{
+	background:url("../img/toolbar.png") no-repeat;
+}
+.toolbar-item{
+	position:relative;
+	display:block;
+	height:$toolbar-size;
+	width:$toolbar-size;	
+	margin-top:1px;
+	transition: background-position .5s;
+	&:hover{
+		.toolbar-layer{
+			@include opacity(1);
+			transform:scale(1);
+		}
+	}		
+}
+.toolbar-item-weixin{
+	@include background-position(-798px,-860px);
+	.toolbar-layer{
+			height:212px;
+			background-position:0 0;
+	}
+}
+.toolbar-item-feedback{
+	@include background-position(-426px,-488px);
+}
+.toolbar-item-app{
+	@include background-position(-550px,-612px);
+	.toolbar-layer{
+			height:194px;
+			background-position:0 -222px;
+	}
+}
+.toolbar-item-top{
+	@include background-position(-674px,-736px);
+}
+.toolbar-layer{
+	position:absolute;
+	right:$toolbar-size - 6;
+	bottom:-10px;
+	width:172px;
+	@include opacity(0);
+	transform:scale(0.01);
+	transform-origin:95% 95%;
+	transition:all .5s;
+}
+
