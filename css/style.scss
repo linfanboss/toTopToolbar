@@ -1,65 +1,312 @@
-
-$toolbar-size: 52px;
-@mixin background-position($normal,$hover){
-	background-position: 0 $normal;
-	&:hover{
-		background-position: 0 $hover;
-	}
-}
+/*公共的CSS3兼容性样式可提取出一个单独文件调用*/
 @mixin opacity($opacity){
 		opacity:$opacity;
 		filter:alpha(opacity=$opacity * 100);
 }
-.toolbar {
-	position:fixed;
+@mixin transition($transition){
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
+	-ms-transition: $transition;
+	-o-transition: $transition;
+	transition: $transition;
+}
+@mixin transform-origin($origin){
+	-webkit-transform-origin: $origin;
+	-moz-transform-origin: $origin;
+	-ms-transform-origin: $origin;
+	-o-transform-origin: $origin;
+	transform-origin: $origin;
+}
+@mixin transform-scale($scale){
+	-webkit-transform: scale($scale);
+	-moz-transform: scale($scale);
+	-ms-transform: scale($scale);
+	-o-transform: scale($scale);
+	transform: scale($scale);
+}
+//-------------------采用sprite图实现------------------------------//
+// $toolbar-size: 52px;
+// @mixin background-position($normal,$hover){
+// 	background-position: 0 $normal;
+// 	&:hover{
+// 		background-position: 0 $hover;
+// 	}
+// }
+
+// .toolbar {
+// 	position:fixed;
+// 	right:20px;
+// 	bottom:10px;
+// }
+// .toolbar-item,.toolbar-layer{
+// 	background:url("../img/toolbar.png") no-repeat;
+// }
+// .toolbar-item{
+// 	position:relative;
+// 	display:block;
+// 	height:$toolbar-size;
+// 	width:$toolbar-size;	
+// 	margin-top:1px;
+// 	@include transition(background-position .5s);
+// 	&:hover{
+// 		.toolbar-layer{
+// 			@include opacity(1);
+// 			@include transform-scale(1);
+// 		}
+// 	}		
+// }
+// .toolbar-item-weixin{
+// 	@include background-position(-798px,-860px);
+// 	.toolbar-layer{
+// 			height:212px;
+// 			background-position:0 0;
+// 	}
+// }
+// .toolbar-item-feedback{
+// 	@include background-position(-426px,-488px);
+// }
+// .toolbar-item-app{
+// 	@include background-position(-550px,-612px);
+// 	.toolbar-layer{
+// 			height:194px;
+// 			background-position:0 -222px;
+// 	}
+// }
+// .toolbar-item-top{
+// 	@include background-position(-674px,-736px);
+// }
+// .toolbar-layer{
+// 	position:absolute;
+// 	right:$toolbar-size - 6;
+// 	bottom:-10px;
+// 	width:172px;
+// 	@include opacity(0);
+// 	@include transform-scale(0.01);
+// 	@include transform-origin(95% 95%);
+// 	@include transition(all .5s);
+// }
+
+//---------------------------------------------------------------------------------------------------------------------//
+/*字体图片的样式*/
+@font-face {
+	font-family: 'icomoon';
+	src:url('../font/icomoon.eot?v90wz5');
+	src:url('../font/icomoon.eot?v90wz5#iefix') format('embedded-opentype'),
+		url('../font/icomoon.ttf?v90wz5') format('truetype'),
+		url('../font/icomoon.woff?v90wz5') format('woff'),
+		url('../font/icomoon.svg?v90wz5#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-vertical_align_top:before {
+	content: "\e900";
+}
+.icon-phone:before {
+	content: "\e901";
+}
+.icon-commenting-o:before {
+	content: "\e902";
+}
+.icon-wechat:before {
+	content: "\e903";
+}
+//-------------------采用字体图标实现------------------------------//
+// $toolbar-size:52px;
+// .toolbar-item-box{
+// 	display: block;
+// 	width:$toolbar-size;
+// 	height:$toolbar-size;
+// }
+// .toolbar{
+// 	position: fixed;
+// 	right:20px;
+// 	bottom:10px;
+// }
+// .toolbar-item{
+// 	position: relative;
+// 	@extend .toolbar-item-box;
+// 	margin-top:1px;
+// 	text-align: center;
+// 	text-decoration: none;
+// 	color: #fff;
+//     &:hover {
+// 			.toolbar-icon{
+// 				margin-top: -$toolbar-size;
+// 				@include transition(margin-top .5s);
+// 			}
+// 			.toolbar-layer-weixin{
+// 				@include opacity(1);
+// 				@include transform-scale(1);
+// 				@include transition(all .5s);
+// 			}
+// 			.toolbar-layer-app{
+// 				@include opacity(1);
+// 				@include transform-scale(1);
+// 				@include transition(all .5s);
+// 			}
+// 	}
+// 	.toolbar-btn{
+// 		@extend .toolbar-item-box;
+// 		overflow: hidden;
+// 		.toolbar-icon{
+// 			@extend .toolbar-item-box;
+// 			line-height: $toolbar-size;
+// 			font-size: 30px;
+// 			background-color: #d0d6d9;
+// 			@include transition(margin-top .5s);
+// 		}
+// 		.toolbar-text{
+// 			@extend .toolbar-item-box;
+// 		//	line-height: 1.2;
+// 			padding-top: 12px;
+// 			font-size: 12px;
+// 			background-color: #98a1a6;
+// 		}
+// 	}
+// 	.toolbar-layer{
+// 		position: absolute;
+// 		right: $toolbar-size - 6px;
+// 		bottom: -10px;
+// 		width: 172px;
+// 		background: url("../img/toolbar_img.png") no-repeat;
+// 		@include opacity(0);
+// 		@include transform-origin(95% 95%);
+// 		@include transform-scale(0.01);
+// 	}
+// 	.toolbar-layer-weixin{
+// 		height: 212px;
+// 		background-position: 0 0;
+// 	}
+// 	.toolbar-layer-app{
+// 		height: 194px;
+// 		background-position: 0 -222px;
+// 	}
+// }
+
+//---------------------------------------------------------------------------------------------------------------------//
+//-------------------采用before和after伪类实现------------------------------//
+$toolbar-size:52px;
+@mixin toolbar-item-content($icon,$text){
+	.toolbar-btn{
+		&:before{
+			content: $icon;
+		}
+		&:after{
+			content: $text;
+		}
+	}
+}
+@mixin toolbar-item-hover{
+	.toolbar-btn{
+		&:before{
+			margin-top: -$toolbar-size;
+			@include transition(margin-top .5s);
+		}
+	}
+}
+.toolbar-item-box{
+	display: block;
+	width:$toolbar-size;
+	height:$toolbar-size;
+}
+.toolbar{
+	position: fixed;
 	right:20px;
 	bottom:10px;
 }
-.toolbar-item,.toolbar-layer{
-	background:url("../img/toolbar.png") no-repeat;
-}
 .toolbar-item{
-	position:relative;
-	display:block;
-	height:$toolbar-size;
-	width:$toolbar-size;	
+	position: relative;
+	@extend .toolbar-item-box;
 	margin-top:1px;
-	transition: background-position .5s;
-	&:hover{
-		.toolbar-layer{
-			@include opacity(1);
-			transform:scale(1);
+	text-decoration: none;
+ 	color: #fff;
+	.toolbar-btn{
+		@extend .toolbar-item-box;
+		overflow: hidden;
+		&:before,&:after{
+			@extend .toolbar-item-box;
+			content: "";
+			color: #fff;
+			text-align: center;
+			@include transition(margin-top .5s);
 		}
-	}		
+		&:before{//icon
+			@extend [class^="icon-"];
+			background-color: #d0d6d9;
+			font-size: 30px;
+			color: #fff;
+			line-height: $toolbar-size;
+		}
+		&:after{//text
+			background-color: #98a1a6;
+			font-size: 12px;
+			padding-top:12px;
+			white-space: pre;
+		}
+	}
+
+}
+.toolbar-item-weixin,.toolbar-item-app{
+	&:hover{
+		@include toolbar-item-hover;
+		&:after{
+			@include opacity(1);
+			@include transform-scale(1);
+			@include transition(all .5s);
+		}
+	}
+	&:after{
+		content: "";
+		position: absolute;
+		right: $toolbar-size - 6;
+		bottom:-10px;
+		width: 172px;
+		background: url("../img/toolbar_img.png") no-repeat;
+		@include opacity(0);
+		@include transform-origin(95% 95%);
+		@include transform-scale(0.01);
+		@include transition(all .5s);
+	}
 }
 .toolbar-item-weixin{
-	@include background-position(-798px,-860px);
-	.toolbar-layer{
-			height:212px;
-			background-position:0 0;
+	@include toolbar-item-content("\e903","公众\A账号");
+	&:after{
+		height:212px;
+		background-position: 0 0;
+	}
+}
+.toolbar-item-app{
+	@include toolbar-item-content("\e901","APP\A下载");
+	&:after{
+		height:194px;
+		background-position: 0 -222px;
 	}
 }
 .toolbar-item-feedback{
-	@include background-position(-426px,-488px);
-}
-.toolbar-item-app{
-	@include background-position(-550px,-612px);
-	.toolbar-layer{
-			height:194px;
-			background-position:0 -222px;
+	@include toolbar-item-content("\e902","意见\A反馈");
+	&:hover{
+		@include toolbar-item-hover;
 	}
 }
 .toolbar-item-top{
-	@include background-position(-674px,-736px);
+	@include toolbar-item-content("\e900","返回\A顶部");
+	&:hover{
+		@include toolbar-item-hover;
+	}
 }
-.toolbar-layer{
-	position:absolute;
-	right:$toolbar-size - 6;
-	bottom:-10px;
-	width:172px;
-	@include opacity(0);
-	transform:scale(0.01);
-	transform-origin:95% 95%;
-	transition:all .5s;
-}
-

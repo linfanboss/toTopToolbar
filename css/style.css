@@ -1,58 +1,157 @@
+@charset "UTF-8";
+/*公共的CSS3兼容性样式可提取出一个单独文件调用*/
+/*字体图片的样式*/
+@font-face {
+  font-family: 'icomoon';
+  src: url("../font/icomoon.eot?v90wz5");
+  src: url("../font/icomoon.eot?v90wz5#iefix") format("embedded-opentype"), url("../font/icomoon.ttf?v90wz5") format("truetype"), url("../font/icomoon.woff?v90wz5") format("woff"), url("../font/icomoon.svg?v90wz5#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+[class^="icon-"], .toolbar-item .toolbar-btn:before, [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-vertical_align_top:before {
+  content: "\e900"; }
+
+.icon-phone:before {
+  content: "\e901"; }
+
+.icon-commenting-o:before {
+  content: "\e902"; }
+
+.icon-wechat:before {
+  content: "\e903"; }
+
+.toolbar-item-box, .toolbar-item, .toolbar-item .toolbar-btn, .toolbar-item .toolbar-btn:before, .toolbar-item .toolbar-btn:after {
+  display: block;
+  width: 52px;
+  height: 52px; }
+
 .toolbar {
   position: fixed;
   right: 20px;
   bottom: 10px; }
 
-.toolbar-item, .toolbar-layer {
-  background: url("../img/toolbar.png") no-repeat; }
-
 .toolbar-item {
   position: relative;
-  display: block;
-  height: 52px;
-  width: 52px;
   margin-top: 1px;
-  transition: background-position .5s; }
-  .toolbar-item:hover .toolbar-layer {
-    opacity: 1;
-    filter: alpha(opacity=100);
-    transform: scale(1); }
+  text-decoration: none;
+  color: #fff; }
+  .toolbar-item .toolbar-btn {
+    overflow: hidden; }
+    .toolbar-item .toolbar-btn:before, .toolbar-item .toolbar-btn:after {
+      content: "";
+      color: #fff;
+      text-align: center;
+      -webkit-transition: margin-top 0.5s;
+      -moz-transition: margin-top 0.5s;
+      -ms-transition: margin-top 0.5s;
+      -o-transition: margin-top 0.5s;
+      transition: margin-top 0.5s; }
+    .toolbar-item .toolbar-btn:before {
+      background-color: #d0d6d9;
+      font-size: 30px;
+      color: #fff;
+      line-height: 52px; }
+    .toolbar-item .toolbar-btn:after {
+      background-color: #98a1a6;
+      font-size: 12px;
+      padding-top: 12px;
+      white-space: pre; }
 
-.toolbar-item-weixin {
-  background-position: 0 -798px; }
-  .toolbar-item-weixin:hover {
-    background-position: 0 -860px; }
-  .toolbar-item-weixin .toolbar-layer {
-    height: 212px;
-    background-position: 0 0; }
-
-.toolbar-item-feedback {
-  background-position: 0 -426px; }
-  .toolbar-item-feedback:hover {
-    background-position: 0 -488px; }
-
-.toolbar-item-app {
-  background-position: 0 -550px; }
-  .toolbar-item-app:hover {
-    background-position: 0 -612px; }
-  .toolbar-item-app .toolbar-layer {
-    height: 194px;
-    background-position: 0 -222px; }
-
-.toolbar-item-top {
-  background-position: 0 -674px; }
-  .toolbar-item-top:hover {
-    background-position: 0 -736px; }
-
-.toolbar-layer {
+.toolbar-item-weixin:hover .toolbar-btn:before, .toolbar-item-app:hover .toolbar-btn:before {
+  margin-top: -52px;
+  -webkit-transition: margin-top 0.5s;
+  -moz-transition: margin-top 0.5s;
+  -ms-transition: margin-top 0.5s;
+  -o-transition: margin-top 0.5s;
+  transition: margin-top 0.5s; }
+.toolbar-item-weixin:hover:after, .toolbar-item-app:hover:after {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+.toolbar-item-weixin:after, .toolbar-item-app:after {
+  content: "";
   position: absolute;
   right: 46px;
   bottom: -10px;
   width: 172px;
+  background: url("../img/toolbar_img.png") no-repeat;
   opacity: 0;
   filter: alpha(opacity=0);
-  transform: scale(0.01);
+  -webkit-transform-origin: 95% 95%;
+  -moz-transform-origin: 95% 95%;
+  -ms-transform-origin: 95% 95%;
+  -o-transform-origin: 95% 95%;
   transform-origin: 95% 95%;
-  transition: all .5s; }
+  -webkit-transform: scale(0.01);
+  -moz-transform: scale(0.01);
+  -ms-transform: scale(0.01);
+  -o-transform: scale(0.01);
+  transform: scale(0.01);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s; }
+
+.toolbar-item-weixin .toolbar-btn:before {
+  content: ""; }
+.toolbar-item-weixin .toolbar-btn:after {
+  content: "公众\a账号"; }
+.toolbar-item-weixin:after {
+  height: 212px;
+  background-position: 0 0; }
+
+.toolbar-item-app .toolbar-btn:before {
+  content: ""; }
+.toolbar-item-app .toolbar-btn:after {
+  content: "APP\a下载"; }
+.toolbar-item-app:after {
+  height: 194px;
+  background-position: 0 -222px; }
+
+.toolbar-item-feedback .toolbar-btn:before {
+  content: ""; }
+.toolbar-item-feedback .toolbar-btn:after {
+  content: "意见\a反馈"; }
+.toolbar-item-feedback:hover .toolbar-btn:before {
+  margin-top: -52px;
+  -webkit-transition: margin-top 0.5s;
+  -moz-transition: margin-top 0.5s;
+  -ms-transition: margin-top 0.5s;
+  -o-transition: margin-top 0.5s;
+  transition: margin-top 0.5s; }
+
+.toolbar-item-top .toolbar-btn:before {
+  content: ""; }
+.toolbar-item-top .toolbar-btn:after {
+  content: "返回\a顶部"; }
+.toolbar-item-top:hover .toolbar-btn:before {
+  margin-top: -52px;
+  -webkit-transition: margin-top 0.5s;
+  -moz-transition: margin-top 0.5s;
+  -ms-transition: margin-top 0.5s;
+  -o-transition: margin-top 0.5s;
+  transition: margin-top 0.5s; }
 
 /*# sourceMappingURL=style.css.map */
